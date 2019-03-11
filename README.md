@@ -15,7 +15,7 @@
 
 #### Load into script
 
-curl -s -d@some.json 127.0.0.1:8080 | jq
+    curl -s -d@some.json https://gitlab-create-deploy-token.herokuapp.com/ | jq
 
 #### Good result
 
