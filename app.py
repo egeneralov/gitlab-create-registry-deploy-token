@@ -1,5 +1,6 @@
 
 import os
+from markdown2 import Markdown
 from flask import Flask, jsonify, request, abort
 from create_deploy_token import *
 
@@ -9,7 +10,7 @@ app = Flask(__name__)
 @app.route('/', methods = ["GET"])
 def ok():
   with open('README.md') as f:
-    return f.read()
+    return '<html>' + Markdown().convert(f.read()) + '</html>'
 
 @app.route('/', methods = ["POST"])
 def proceed():
