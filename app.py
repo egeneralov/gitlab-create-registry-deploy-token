@@ -8,7 +8,8 @@ app = Flask(__name__)
 
 @app.route('/', methods = ["GET"])
 def ok():
-  return jsonify({"ok": True})
+  with open('README.md') as f:
+    return f.read()
 
 @app.route('/', methods = ["POST"])
 def proceed():
