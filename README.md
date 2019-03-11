@@ -36,3 +36,6 @@
       "result": null
     }
 
+### Source code
+
+https://github.com/egeneralov/gitlab-create-registry-deploy-token
