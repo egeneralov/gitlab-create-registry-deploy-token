@@ -1,4 +1,5 @@
-
+import json
+import base64
 import os
 from markdown2 import Markdown
 from flask import Flask, jsonify, request, abort
@@ -17,11 +18,12 @@ def proceed():
   try:
     payload = request.get_json(force=True)
   except Exception as e:
+    print(e)
     return jsonify({
         "ok": False,
         "result": None,
         "error": str(e),
-        "message": "payload"
+#         "message": "payload"
       }), 400
 
   config = {
@@ -30,29 +32,46 @@ def proceed():
     "password": '',
     "name": "terraform",
     "read_repository": 0,
-    "read_registry": 1
+    "read_registry": 1,
+    "server": ""
   }
 
   try:
     config.update(**payload)
   except Exception as e:
+    print(e)
     return jsonify({
         "ok": False,
         "result": None,
         "error": str(e),
-        "message": "config.update"
+#         "message": "config.update"
       }), 400
 
   try:
-    some = main(config)
+    result = main(config)
+    if config["server"]:
+      result["dockerconfigjson"] = base64.b64encode(json.dumps({
+        "auths":{
+          config["server"]:{
+            "username": result["username"],
+            "password": result["token"],
+#             "auth": base64.b64encode(
+#               "{}:{}".format(
+#                 result["username"],
+#                 result["token"]
+#               ).encode()
+#             ).decode()
+          }
+        }
+      }, default=str).encode()).decode()
     return jsonify({
-        "ok": False,
-        "result": some,
+        "ok": True,
+        "result": result,
         "error": None
       }), 200
   except Exception as e:
-    print(e)
-    print(dir(e))
+#     print(e)
+#     print(dir(e))
     return jsonify({
         "ok": False,
         "result": None,
