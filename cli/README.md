@@ -6,7 +6,7 @@ Command line utility - client for [gitlab-create-registry-deploy-token](https://
 
     cd cli/
     export CGO_ENABLED=0 GOOS=darwin GOARCH=amd64
-    go build -a -tags netgo -ldflags '-w' -v -o ${GOPATH:-~/go/bin/gitlab-create-registry-deploy-token} gitlab-create-registry-deploy-token main.go
+    go build -a -tags netgo -ldflags '-w' -v -o ${GOPATH:-~/go}/bin/gitlab-create-registry-deploy-token main.go
 
 #### -help
 
