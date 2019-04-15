@@ -18,7 +18,7 @@ Command line utility - client for [gitlab-create-registry-deploy-token](https://
       -name string
         	name for deploy token (default "k8s")
       -output string
-        	[json,yaml,base64,k8s] (default "json")
+        	Possible values [json,yaml,base64,k8s] (default "json")
       -password string
         	GITLAB_PASSWORD
       -server string
