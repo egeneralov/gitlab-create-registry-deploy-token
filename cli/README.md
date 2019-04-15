@@ -2,15 +2,11 @@
 
 Command line utility - client for [gitlab-create-registry-deploy-token](https://github.com/egeneralov/gitlab-create-registry-deploy-token.git) api.
 
-## get
-
-    go get github.com/egeneralov/gitlab-create-registry-deploy-token/cli/
-
 ## build
 
     cd cli/
     export CGO_ENABLED=0 GOOS=darwin GOARCH=amd64
-    go build -a -tags netgo -ldflags '-w' -v -o gitlab-create-registry-deploy-token main.go
+    go build -a -tags netgo -ldflags '-w' -v -o ${GOPATH:-~/go/bin/gitlab-create-registry-deploy-token}gitlab-create-registry-deploy-token main.go
 
 #### -help
 
